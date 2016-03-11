@@ -1,0 +1,9 @@
+[submodule "electrum-starter-3"]
+	path = electrum-starter-3
+	url = https://github.com/epsitec-sa/electrum-starter-3.git
+[submodule "electrum"]
+	path = electrum
+	url = https://github.com/epsitec-sa/electrum.git
+[submodule "electrum-arc"]
+	path = electrum-arc
+	url = https://github.com/epsitec-sa/electrum-arc.git
