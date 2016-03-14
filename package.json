@@ -17,6 +17,5 @@
   "dependencies": {
     "co": "^4.6.0",
     "co-child-process": "0.0.3",
-    "rimraf": "^2.5.2"
   }
 }

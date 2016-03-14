@@ -4,7 +4,6 @@ const fs     = require ('fs');
 const path   = require ('path');
 const co     = require ('co');
 const spawn  = require ('co-child-process');
-const rimraf = require ('rimraf');
 
 
 function* git () {
@@ -31,12 +30,6 @@ function* npm (verb, modPath, cwd) {
     stdio: ['ignore', 1, 2],
     cwd: cwd || __dirname
   });
-}
-
-function* rm (nodeModPath) {
-  console.log (`rm ${nodeModPath}`);
-
-  yield rimraf.sync (path.join (__dirname, nodeModPath)) || {};
 }
 
 function parsePackage (packagePath) {
