@@ -3,11 +3,13 @@
 const path  = require ('path');
 const spawn = require ('child_process').spawn;
 
+const npm = process.platform === 'win32' ? 'npm.cmd' : 'npm';
+
 [
   'electrum',
   'electrum-arc'
 ].forEach (mod => {
-  spawn ('npm', [
+  spawn (npm, [
     'run', 'watch'
   ], {
     stdio: ['ignore', 1, 2],
@@ -15,7 +17,7 @@ const spawn = require ('child_process').spawn;
   });
 });
 
-spawn ('npm', ['start'], {
+spawn (npm, ['start'], {
   stdio: ['ignore', 1, 2],
   cwd: path.join (__dirname, 'electrum-starter-3')
 });
