@@ -73,8 +73,8 @@ co (function* () {
   );
   yield* npm ('install', list);
 
-  fs.symlinkSync ('../electrum',     './node_modules/electrum');
-  fs.symlinkSync ('../electrum-arc', './node_modules/electrum-arc');
+  fs.symlinkSync ('../electrum', path.join (__dirname, './node_modules/electrum'), 'junction');
+  fs.symlinkSync ('../electrum-arc', path.join (__dirname, './node_modules/electrum-arc'), 'junction');
 }).then (() => {
   console.log ('done');
 }, err => {
