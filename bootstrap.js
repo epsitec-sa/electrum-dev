@@ -69,7 +69,7 @@ function symlink (src, dst) {
 }
 
 co (function* () {
-  yield* git ('submodule', 'update', '--init', '--recursive');
+  yield* git ('submodule', 'update',  '--init',      '--recursive');
   yield* git ('submodule', 'foreach', '--recursive', 'git checkout master');
   yield* git ('submodule', 'foreach', '--recursive', 'git pull');
 
