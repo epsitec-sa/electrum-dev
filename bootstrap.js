@@ -87,8 +87,8 @@ co (function* () {
   symlink (path.join (__dirname, 'electrum'),     path.join (__dirname, './node_modules/electrum'));
   symlink (path.join (__dirname, 'electrum-arc'), path.join (__dirname, './node_modules/electrum-arc'));
 
-  yield* npm ('run', ['compile'], path.join (__dirname, 'electrum'));
-  yield* npm ('run', ['compile'], path.join (__dirname, 'electrum-arc'));
+  yield* npm ('run', ['rebuild'], path.join (__dirname, 'electrum'));
+  yield* npm ('run', ['rebuild'], path.join (__dirname, 'electrum-arc'));
   yield* npm ('run', ['compile'], path.join (__dirname, 'electrum-starter-3'));
 }).then (() => {
   console.log ('done');
