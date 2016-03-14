@@ -17,7 +17,7 @@ function* git () {
   });
 }
 
-function* npm (verb, modPath) {
+function* npm (verb, modPath, cwd) {
   console.log (`npm ${verb} ${modPath}`);
 
   let args = [verb];
@@ -29,7 +29,7 @@ function* npm (verb, modPath) {
   const npm = process.platform === 'win32' ? 'npm.cmd' : 'npm';
   yield spawn (npm, args, {
     stdio: ['ignore', 1, 2],
-    cwd: __dirname
+    cwd: cwd || __dirname
   });
 }
 
