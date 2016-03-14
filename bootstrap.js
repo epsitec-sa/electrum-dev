@@ -81,9 +81,15 @@ co (function* () {
   );
   yield* npm ('install', list);
 
-  fs.symlinkSync ('../node_modules', path.join (__dirname, './electrum-starter-3/node_modules'), 'junction');
-  fs.symlinkSync ('../electrum', path.join (__dirname, './node_modules/electrum'), 'junction');
-  fs.symlinkSync ('../electrum-arc', path.join (__dirname, './node_modules/electrum-arc'), 'junction');
+  symlink (path.join (__dirname, 'node_modules'), path.join (__dirname, './electrum-starter-3/node_modules'));
+  symlink (path.join (__dirname, 'node_modules'), path.join (__dirname, './electrum/node_modules'));
+  symlink (path.join (__dirname, 'node_modules'), path.join (__dirname, './electrum-arc/node_modules'));
+  symlink (path.join (__dirname, 'electrum'),     path.join (__dirname, './node_modules/electrum'));
+  symlink (path.join (__dirname, 'electrum-arc'), path.join (__dirname, './node_modules/electrum-arc'));
+
+  yield* npm ('run', ['compile'], path.join (__dirname, 'electrum'));
+  yield* npm ('run', ['compile'], path.join (__dirname, 'electrum-arc'));
+  yield* npm ('run', ['compile'], path.join (__dirname, 'electrum-starter-3'));
 }).then (() => {
   console.log ('done');
 }, err => {
