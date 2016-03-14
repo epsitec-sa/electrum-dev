@@ -1,0 +1,21 @@
+{
+  "name": "electrum-dev",
+  "version": "0.0.1",
+  "description": "Bundle to develop Electrum",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinst": "node bootstrap.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/epsitec-sa/electrum-dev.git"
+  },
+  "author": "Epsitec SA",
+  "license": "MIT",
+  "dependencies": {
+    "co": "^4.6.0",
+    "co-child-process": "0.0.3",
+    "rimraf": "^2.5.2"
+  }
+}
