@@ -26,8 +26,8 @@ function* npm (verb, modPath) {
   } else {
     args.push (modPath);
   }
-
-  yield spawn ('npm', args, {
+  const npm = process.platform === 'win32' ? 'npm.cmd' : 'npm';
+  yield spawn (npm, args, {
     stdio: ['ignore', 1, 2],
     cwd: __dirname
   });
