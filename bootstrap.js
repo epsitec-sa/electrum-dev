@@ -5,8 +5,13 @@ const path   = require ('path');
 const co     = require ('co');
 const spawn  = require ('co-child-process');
 
+function loadIgnoreList () {
+  return JSON.parse (fs.readFileSync ('./.bootstrap-ignore.json'));
+}
 
-function* git () {
+const ignoreList = loadIgnoreList ();
+
+function * git () {
   const args = Array.prototype.slice.call (arguments);
   console.log (`git ${args.join (' ')}`);
 
@@ -16,7 +21,7 @@ function* git () {
   });
 }
 
-function* npm (verb, modPath, cwd) {
+function * npm (verb, modPath, cwd) {
   console.log (`npm ${verb} ${modPath}`);
 
   let args = [verb];
@@ -39,11 +44,12 @@ function parsePackage (packagePath) {
   let list = {};
 
   [def.dependencies, def.devDependencies]
+    .filter (deps => !!deps)
     .forEach (deps => {
       Object
         .keys (deps)
         .filter (pkg => {
-          return !/^electrum(?:-arc)?$/.test (pkg);
+          return ignoreList.indexOf (pkg) === -1;
         })
         .forEach (pkg => {
           list[`${pkg}@${deps[pkg]}`] = null;
@@ -61,24 +67,28 @@ function symlink (src, dst) {
   }
 }
 
-co (function* () {
+co (function * () {
   yield* git ('submodule', 'update',  '--init',      '--recursive');
   yield* git ('submodule', 'foreach', '--recursive', 'git checkout master');
   yield* git ('submodule', 'foreach', '--recursive', 'git pull');
 
   let list = [];
-  list = list.concat (
-    parsePackage ('electrum-starter-3/package.json'),
-    parsePackage ('electrum/package.json'),
-    parsePackage ('electrum-arc/package.json')
-  );
+  ignoreList.forEach (pkg => {
+    list = list.concat (parsePackage (`${pkg}/package.json`));
+  });
+
   yield* npm ('install', list);
 
-  symlink (path.join (__dirname, 'node_modules'), path.join (__dirname, './electrum-starter-3/node_modules'));
-  symlink (path.join (__dirname, 'node_modules'), path.join (__dirname, './electrum/node_modules'));
-  symlink (path.join (__dirname, 'node_modules'), path.join (__dirname, './electrum-arc/node_modules'));
-  symlink (path.join (__dirname, 'electrum'),     path.join (__dirname, './node_modules/electrum'));
-  symlink (path.join (__dirname, 'electrum-arc'), path.join (__dirname, './node_modules/electrum-arc'));
+  ignoreList.forEach (pkg => {
+    symlink (
+      path.join (__dirname, 'node_modules'),
+      path.join (__dirname, `./${pkg}/node_modules`)
+    );
+    symlink (
+      path.join (__dirname, `${pkg}`),
+      path.join (__dirname, `./node_modules/${pkg}`)
+    );
+  });
 
   yield* npm ('run', ['rebuild'], path.join (__dirname, 'electrum'));
   yield* npm ('run', ['rebuild'], path.join (__dirname, 'electrum-arc'));
