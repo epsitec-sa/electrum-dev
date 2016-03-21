@@ -7,3 +7,6 @@
 [submodule "electrum-arc"]
 	path = electrum-arc
 	url = https://github.com/epsitec-sa/electrum-arc.git
+[submodule "babel-env"]
+	path = babel-env
+	url = https://github.com/epsitec-sa/babel-env.git
