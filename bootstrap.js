@@ -56,7 +56,7 @@ function parsePackage (packagePath) {
         });
     });
 
-  return Object.keys (list);
+  return list;
 }
 
 function symlink (src, dst) {
@@ -72,12 +72,12 @@ co (function * () {
   yield* git ('submodule', 'foreach', '--recursive', 'git checkout master');
   yield* git ('submodule', 'foreach', '--recursive', 'git pull');
 
-  let list = [];
+  let list = {};
   ignoreList.forEach (pkg => {
-    list = list.concat (parsePackage (`${pkg}/package.json`));
+    list = Object.assign (list, parsePackage (`${pkg}/package.json`));
   });
 
-  yield* npm ('install', list);
+  yield* npm ('install', Object.keys (list));
 
   ignoreList.forEach (pkg => {
     symlink (
