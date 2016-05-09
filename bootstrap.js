@@ -90,6 +90,7 @@ co (function * () {
     );
   });
 
+  yield* npm ('run', ['compile'], path.join (__dirname, 'electrum-theme'));
   yield* npm ('run', ['rebuild'], path.join (__dirname, 'electrum'));
   yield* npm ('run', ['rebuild'], path.join (__dirname, 'electrum-arc'));
   yield* npm ('run', ['compile'], path.join (__dirname, 'electrum-starter-3'));

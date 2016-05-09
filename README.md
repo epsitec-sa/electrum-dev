@@ -30,3 +30,17 @@ reload is triggered.
 
 Changes in `electrum/src`, `electrum-arc/src` or `electrum-starter-3/src`
 trigger a full hot reload.
+
+## Add a submodule
+
+To add a dependency as a submodule:
+
+* Import module with `git submodule add https://github.com/url-to-git-repository.git`
+* Edit `.bootstrap-ignore.json` and add the module to the list.
+* Add `yield* npm ('run', ...)` at end of `bootstrap.js`; dependencies
+  should be listed before their consumers (e.g. `electrum` is needed by
+  `electrum-arc`, so place `electrum` before `electrum-arc` in the list).
+* Edit `start.js` to include the module.
+* Edit _aliasing_ in `electrum-starter-3` file `webpack.config.js`, by
+  adding an entry to the `resolve`.`alias` section, so that the module
+  will be picked up properly by Webpack.

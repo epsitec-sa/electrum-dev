@@ -10,3 +10,6 @@
 [submodule "babel-env"]
 	path = babel-env
 	url = https://github.com/epsitec-sa/babel-env.git
+[submodule "electrum-theme"]
+	path = electrum-theme
+	url = https://github.com/epsitec-sa/electrum-theme.git
