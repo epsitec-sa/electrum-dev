@@ -1,5 +1,5 @@
 {
-  "npmargs": [],
+  "npmInstallArgs": [],
   "modules": [
     "./electrum",
     "./electrum-arc",
