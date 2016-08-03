@@ -36,8 +36,8 @@ trigger a full hot reload.
 To add a dependency as a submodule:
 
 * Import module with `git submodule add https://github.com/url-to-git-repository.git`
-* Edit `.bootstrap-ignore.json` and add the module to the list.
-* Add `yield* npm ('run', ...)` at end of `bootstrap.js`; dependencies
+* Edit `.scrc` and add the relative module path to the list of `modules`.
+* Add `yield* npm ('run', ...)` at end of `stage-1.js`; dependencies
   should be listed before their consumers (e.g. `electrum` is needed by
   `electrum-arc`, so place `electrum` before `electrum-arc` in the list).
 * Edit `start.js` to include the module.

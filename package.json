@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "postinstall": "node bootstrap.js",
+    "postinstall": "node stage-0.js && startcraft && node stage-1.js",
     "start": "node start.js"
   },
   "repository": {
@@ -14,8 +14,10 @@
   },
   "author": "Epsitec SA",
   "license": "MIT",
-  "dependencies": {
+  "dependencies": {},
+  "devDependencies": {
     "co": "^4.6.0",
-    "co-child-process": "0.0.3"
+    "co-child-process": "0.0.3",
+    "startcraft": "^0.1.2"
   }
 }

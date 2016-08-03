@@ -1,0 +1,10 @@
+{
+  "npmargs": [],
+  "modules": [
+    "./electrum",
+    "./electrum-arc",
+    "./electrum-starter-3",
+    "./electrum-theme",
+    "./babel-env"
+  ]
+}
