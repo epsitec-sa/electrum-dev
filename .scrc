@@ -6,5 +6,15 @@
     "./electrum-starter-3",
     "./electrum-theme",
     "./babel-env"
-  ]
+  ],
+  "scripts": {
+    "presc": {
+      "postinstall" : [
+        "git submodule update --init --recursive",
+        "git submodule foreach --recursive git checkout master",
+        "git submodule foreach --recursive git pull"
+      ]
+    },
+    "postsc": {}
+  }
 }

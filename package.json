@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "preinstall": "startcraft",
-    "postinstall": "node stage-0.js && startcraft && node stage-1.js",
+    "postinstall": "startcraft",
     "start": "node start.js"
   },
   "repository": {
@@ -17,7 +17,7 @@
   "license": "MIT",
   "dependencies": {},
   "devDependencies": {
-    "startcraft": "^0.1.2",
+    "startcraft": "^0.2.0",
     "watt": "^3.3.0"
   }
 }
