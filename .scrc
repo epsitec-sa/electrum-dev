@@ -1,11 +1,11 @@
 {
   "npmInstallArgs": [],
   "modules": [
+    "./babel-env",
+    "./electrum-theme",
     "./electrum",
     "./electrum-arc",
-    "./electrum-starter-3",
-    "./electrum-theme",
-    "./babel-env"
+    "./electrum-starter-3"
   ],
   "scripts": {
     "presc": {
