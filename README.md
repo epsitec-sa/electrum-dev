@@ -36,10 +36,10 @@ trigger a full hot reload.
 To add a dependency as a submodule:
 
 * Import module with `git submodule add https://github.com/url-to-git-repository.git`
-* Edit `.scrc` and add the relative module path to the list of `modules`.
-* Add `yield* npm ('run', ...)` at end of `stage-1.js`; dependencies
-  should be listed before their consumers (e.g. `electrum` is needed by
-  `electrum-arc`, so place `electrum` before `electrum-arc` in the list).
+* Edit `.scrc` and add the relative module path to the list of `modules`;
+  dependencies should be listed before their consumers (e.g. `electrum` is
+  needed by `electrum-arc`, so place `electrum` before `electrum-arc` in
+  the list).
 * Edit `start.js` to include the module.
 * Edit _aliasing_ in `electrum-starter-3` file `webpack.config.js`, by
   adding an entry to the `resolve`.`alias` section, so that the module
