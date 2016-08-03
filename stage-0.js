@@ -1,25 +1,32 @@
 'use strict';
 
-const co    = require ('co');
-const spawn = require ('co-child-process');
+const watt  = require ('watt');
+const spawn = require ('child_process').spawn;
 
 
-function * git () {
-  const args = Array.prototype.slice.call (arguments);
+const git = watt (function * (next) {
+  const args = Array.prototype.slice.call (arguments).slice (1);
   console.log (`git ${args.join (' ')}`);
 
-  yield spawn ('git', args, {
+  const proc = spawn ('git', args, {
     stdio: ['ignore', 1, 2],
     cwd: __dirname
   });
-}
 
-co (function * () {
-  yield* git ('submodule', 'update',  '--init',      '--recursive');
-  yield* git ('submodule', 'foreach', '--recursive', 'git checkout master');
-  yield* git ('submodule', 'foreach', '--recursive', 'git pull');
-}).then (() => {
-  console.log ('done');
-}, err => {
-  console.error (err.stack);
-});
+  proc.on ('error', (data) => console.error (data.toString ()));
+  proc.on ('exit', next.parallel ());
+
+  yield next.sync ();
+}, {prepend: true});
+
+watt (function * () {
+  yield git ('submodule', 'update',  '--init',      '--recursive');
+  yield git ('submodule', 'foreach', '--recursive', 'git checkout master');
+  yield git ('submodule', 'foreach', '--recursive', 'git pull');
+}, (err) => {
+  if (err) {
+    console.error (err.stack || err);
+  } else {
+    console.log ('done');
+  }
+}) ();
