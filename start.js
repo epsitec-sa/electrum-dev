@@ -8,7 +8,8 @@ const npm = process.platform === 'win32' ? 'npm.cmd' : 'npm';
 [
   'electrum',
   'electrum-arc',
-  'electrum-theme'
+  'electrum-theme',
+  'electrum-starter-3'
 ].forEach (mod => {
   spawn (npm, [
     'run', 'watch'
