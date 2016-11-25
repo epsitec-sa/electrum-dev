@@ -17,7 +17,7 @@
   "license": "MIT",
   "dependencies": {},
   "devDependencies": {
-    "startcraft": "^0.5.0",
+    "startcraft": "^0.5.9",
     "watt": "^3.3.0"
   }
 }
