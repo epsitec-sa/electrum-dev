@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "preinstall": "startcraft",
+    "preinstall": "startcraft || cd",
     "postinstall": "startcraft",
     "start": "node start.js"
   },
