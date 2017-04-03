@@ -1,13 +1,13 @@
 {
   "presets": [
-    "stage-0",
-    "node5",
-    "react"
+    "env",
+    "react",
+    "stage-0"
   ],
   "plugins": [
-    "transform-react-display-name",
-    "transform-decorators",
     "transform-class-properties",
-    "transform-es2015-classes"
+    "transform-decorators",
+    "transform-react-constant-elements",
+    "transform-react-inline-elements"
   ]
 }
