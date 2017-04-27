@@ -5,7 +5,6 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "preinstall": "startcraft || cd",
     "postinstall": "startcraft",
     "start": "node start.js"
   },
@@ -17,7 +16,7 @@
   "license": "MIT",
   "dependencies": {},
   "devDependencies": {
-    "startcraft": "^0.5.10",
+    "startcraft": "^0.6.3",
     "watt": "^3.3.0"
   }
 }
